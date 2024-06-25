@@ -9,8 +9,6 @@ import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 
-import java.util.function.Consumer;
-
 public class DynamicSound extends PositionedSound implements ITickableSound {
 
     public final boolean flag;

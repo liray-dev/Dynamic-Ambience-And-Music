@@ -5,10 +5,6 @@ import daam.common.world.Region;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.gui.GuiNewChat;
-import net.minecraft.util.text.TextComponentString;
-
-import java.util.function.Consumer;
 
 public class RegionSoundHandler {
 

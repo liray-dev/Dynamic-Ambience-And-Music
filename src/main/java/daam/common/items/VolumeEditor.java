@@ -2,19 +2,14 @@ package daam.common.items;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import daam.DAAM;
-import daam.client.RegionHandler;
-import daam.client.RegionSoundHandler;
 import daam.client.screens.GuiVolumeEditor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiIngame;
-import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

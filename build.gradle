@@ -2,18 +2,15 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = "https://repo.spongepowered.org/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.40'
-        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
     }
 }
 
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: "org.spongepowered.mixin"
 
 idea {
     module {
@@ -47,25 +44,16 @@ minecraft {
     }
 }
 
-mixin {
-    add sourceSets.main, "mixins.daam.refmap.json"
-}
-
 repositories {
     mavenCentral()
-    maven { url = "https://repo.spongepowered.org/maven" }
     maven { url = "https://jitpack.io" }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
-
-    implementation "org.spongepowered:mixin:0.8.3-SNAPSHOT"
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-
     implementation 'com.github.Querz:nbt:6.1'
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.3-SNAPSHOT:processor'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     compileOnly fileTree(dir: 'optifine', include: '*.jar')
@@ -84,8 +72,6 @@ jar {
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"Dynamic-Ambience-And-Music",
             "FMLAT": "accesstransformer.cfg",
-            "FMLCorePluginContainsFMLMod": "true",
-            "ForceLoadAsMod": "true",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
