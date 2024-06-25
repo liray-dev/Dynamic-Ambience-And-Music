@@ -115,8 +115,9 @@ public class RegionHandler {
 
     @SubscribeEvent
     public static void onWorldLoadEvent(PlayerEvent.PlayerLoggedOutEvent event) {
-        System.out.println("При выходе: " + regions.size());
-        regions.clear();
+        if (event.player.world.isRemote) {
+            regions.clear();
+        }
     }
 
     @SubscribeEvent

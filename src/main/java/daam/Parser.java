@@ -32,7 +32,7 @@ public class Parser {
 
         for (Map.Entry<String, Tag<?>> entry : oldDataEntries.entrySet()) {
             CompoundTag dataEntry = (CompoundTag) entry.getValue();
-            String uuid = entry.getKey();
+            String uuid = dataEntry.getString("uuid");
             double minX = dataEntry.getDouble("miX");
             double maxX = dataEntry.getDouble("maX");
             double minY = dataEntry.getDouble("miY");
@@ -44,14 +44,14 @@ public class Parser {
 
             ArrayList<Chunk> chunks = getChunksFromAABB(aabb);
 
-            StringBuilder chunkKey = new StringBuilder("[");
+            StringBuilder chunkKey = new StringBuilder("{\"UUID\":\"").append(uuid).append("\",\"chunks\":[");
             for (Chunk chunk : chunks) {
-                if (chunkKey.length() > 1) {
+                if (chunkKey.length() > chunkKey.lastIndexOf("[") + 1) {
                     chunkKey.append(",");
                 }
                 chunkKey.append("\"").append(chunk.x).append(",").append(chunk.z).append("\"");
             }
-            chunkKey.append("]");
+            chunkKey.append("]}");
 
             CompoundTag newDataEntry = new CompoundTag();
             newDataEntry.putDouble("maY", maxY);

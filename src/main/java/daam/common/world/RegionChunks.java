@@ -14,12 +14,15 @@ public class RegionChunks {
     private static final String PATTERN = "%s,%s";
     private static final Gson GSON = new GsonBuilder().create();
 
+    public String UUID;
     public ArrayList<String> chunks = new ArrayList<>();
 
-    public RegionChunks() {
+    public RegionChunks(String uuid) {
+        this.UUID = uuid;
     }
 
-    public RegionChunks(World world, AxisAlignedBB aabb) {
+    public RegionChunks(String uuid, World world, AxisAlignedBB aabb) {
+        this.UUID = uuid;
         ArrayList<Chunk> chunks = getChunksFromAABB(world, aabb);
         chunks.forEach(this::addChunk);
     }
@@ -38,12 +41,14 @@ public class RegionChunks {
         return false;
     }
 
-    public ArrayList<String> fromString(String chunks) {
-        return (ArrayList<String>) GSON.fromJson(chunks, ArrayList.class);
+    public void fromString(String chunks) {
+        RegionChunks json = GSON.fromJson(chunks, RegionChunks.class);
+        this.UUID = json.UUID;
+        this.chunks = json.chunks;
     }
 
     public String toString() {
-        return GSON.toJson(chunks);
+        return GSON.toJson(this);
     }
 
     public ArrayList<Chunk> getChunksFromAABB(World world, AxisAlignedBB aabb) {

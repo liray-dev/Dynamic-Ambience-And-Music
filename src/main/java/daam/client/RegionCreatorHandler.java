@@ -35,32 +35,40 @@ public class RegionCreatorHandler {
 
     @SubscribeEvent
     public static void left(PlayerInteractEvent.LeftClickBlock event) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.player == null || mc.world == null) return;
-        if (!event.getEntityPlayer().getName().equals(mc.player.getName())) return;
-        if (!(mc.player.getHeldItemMainhand().getItem() instanceof RegionWand)) return;
-        RayTraceResult traceResult = Minecraft.getMinecraft().objectMouseOver;
-        if (traceResult != null) {
-            setLEFT(traceResult.getBlockPos());
-            update();
+        if (event.getWorld().isRemote) {
+            Minecraft mc = Minecraft.getMinecraft();
+            if (mc.player.getHeldItemMainhand().getItem() instanceof RegionWand) {
+                RayTraceResult traceResult = mc.objectMouseOver;
+                if (traceResult != null) {
+                    setLEFT(traceResult.getBlockPos());
+                    update();
+                }
+            }
+        } else {
+            if (event.getEntityPlayer().getHeldItemMainhand().getItem() instanceof RegionWand) {
+                event.setCanceled(true);
+            }
         }
-        event.setCanceled(true);
     }
 
     @SubscribeEvent
     public static void right(PlayerInteractEvent.RightClickBlock event) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.player == null || mc.world == null) return;
-        if (!event.getEntityPlayer().getName().equals(mc.player.getName())) return;
-        if (!(mc.player.getHeldItemMainhand().getItem() instanceof RegionWand)) return;
-        if (mc.player.isSneaking()) return;
-        if (mc.currentScreen instanceof GuiRegionCreator) return;
-        RayTraceResult traceResult = Minecraft.getMinecraft().objectMouseOver;
-        if (traceResult != null) {
-            setRIGHT(traceResult.getBlockPos());
-            update();
+        if (event.getWorld().isRemote) {
+            Minecraft mc = Minecraft.getMinecraft();
+            if (mc.player.getHeldItemMainhand().getItem() instanceof RegionWand) {
+                if (!mc.player.isSneaking() && !(mc.currentScreen instanceof GuiRegionCreator)) {
+                    RayTraceResult traceResult = mc.objectMouseOver;
+                    if (traceResult != null) {
+                        setRIGHT(traceResult.getBlockPos());
+                        update();
+                    }
+                }
+            }
+        } else {
+            if (event.getEntityPlayer().getHeldItemMainhand().getItem() instanceof RegionWand) {
+                event.setCanceled(true);
+            }
         }
-        event.setCanceled(true);
     }
 
     private static void update() {

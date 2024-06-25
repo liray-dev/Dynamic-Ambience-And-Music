@@ -22,7 +22,7 @@ public class CreateRegionPacket extends SimpleNBTPacket {
         Region region = new Region();
         region.deserializeNBT(compound);
 
-        savedData.regions.put(new RegionChunks(player.world, region.getAABB()), region);
+        savedData.regions.put(new RegionChunks(region.getUUID(), player.world, region.getAABB()), region);
         savedData.markDirty();
 
         DAAM.NETWORK.all(new SyncRegionPacket(region));

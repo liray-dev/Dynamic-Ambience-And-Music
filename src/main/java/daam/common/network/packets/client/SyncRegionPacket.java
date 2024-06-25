@@ -28,7 +28,7 @@ public class SyncRegionPacket extends SimpleNBTPacket {
             }
         }
         if (flag) {
-            RegionHandler.regions.put(new RegionChunks(mc.world, updatedRegion.getAABB()), updatedRegion);
+            RegionHandler.regions.put(new RegionChunks(updatedRegion.getUUID(), mc.world, updatedRegion.getAABB()), updatedRegion);
         }
         RegionHandler.soundHandler.stop();
     }

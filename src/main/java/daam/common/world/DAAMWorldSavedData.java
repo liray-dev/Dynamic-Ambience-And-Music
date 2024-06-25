@@ -67,8 +67,8 @@ public class DAAMWorldSavedData extends WorldSavedData {
             Region region = new Region();
             region.deserializeNBT(regionNBT);
 
-            RegionChunks regionChunks = new RegionChunks();
-            regionChunks.chunks = regionChunks.fromString(regionChunksString);
+            RegionChunks regionChunks = new RegionChunks(region.getUUID());
+            regionChunks.fromString(regionChunksString);
 
             regions.put(regionChunks, region);
         }
@@ -91,8 +91,8 @@ public class DAAMWorldSavedData extends WorldSavedData {
             Region region = new Region();
             region.deserializeNBT(regionNBT);
 
-            RegionChunks regionChunks = new RegionChunks();
-            regionChunks.chunks = regionChunks.fromString(regionChunksString);
+            RegionChunks regionChunks = new RegionChunks(region.getUUID());
+            regionChunks.fromString(regionChunksString);
 
             regions.put(regionChunks, region);
         }
