@@ -1,0 +1,16 @@
+[
+{
+  "modid": "runetale",
+  "name": "Rune Tale Main",
+  "description": "none.",
+  "version": "1.0.0",
+  "mcversion": "1.12.2",
+  "url": "https://vk.com/muwwy_orders",
+  "updateUrl": "https://vk.com/muwwy_orders",
+  "authorList": ["LIRAY"],
+  "credits": "https://vk.com/muwwy_orders",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,25 @@
+itemGroup.daam=Динамическая атмосфера и музыка
+item.region_editor.name=Редактор региона
+item.region_wand.name=Создатель региона
+item.light_stick.name=Жезл Света
+
+item.volume_editor.name=Настройщик громкости
+item.sound_stick.name=Редактор звуковых блоков
+tile.sound_block.name=Блок Звука
+
+tile.light_lv0.name=Уровень освещенности 0
+tile.light_lv1.name=Уровень освещенности 1
+tile.light_lv2.name=Уровень освещенности 2
+tile.light_lv3.name=Уровень освещенности 3
+tile.light_lv4.name=Уровень освещенности 4
+tile.light_lv5.name=Уровень освещенности 5
+tile.light_lv6.name=Уровень освещенности 6
+tile.light_lv7.name=Уровень освещенности 7
+tile.light_lv8.name=Уровень освещенности 8
+tile.light_lv9.name=Уровень освещенности 9
+tile.light_lv10.name=Уровень освещенности 10
+tile.light_lv11.name=Уровень освещенности 11
+tile.light_lv12.name=Уровень освещенности 12
+tile.light_lv13.name=Уровень освещенности 13
+tile.light_lv14.name=Уровень освещенности 14
+tile.light_lv15.name=Уровень освещенности 15

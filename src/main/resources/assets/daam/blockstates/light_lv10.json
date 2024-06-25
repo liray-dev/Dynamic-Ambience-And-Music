@@ -1,0 +1,24 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "daam:items/light_10",
+      "particle": "daam:blocks/transparent"
+    }
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "hidden": {
+      "true": {
+        "model": "minecraft:block",
+        "textures": {
+          "particle": "daam:blocks/transparent"
+        }
+      },
+      "false": {}
+    }
+  }
+}
