@@ -51,7 +51,7 @@ public class RegionSoundHandler {
             }
         }
 
-        if (isDay) {
+        if (isDay || !updatedRegion.isTIME_FACTOR()) {
             if (dynamicMusicDay != null) {
                 boolean flag = sound.isSoundPlaying(dynamicMusicDay);
                 boolean flag2 = SoundManager.UNABLE_TO_PLAY.contains(dynamicMusicDay.getSoundLocation());
@@ -93,29 +93,6 @@ public class RegionSoundHandler {
             }
         }
 
-    }
-
-    public void stop() {
-        currentRegion = null;
-        if (isDay) {
-            if (dynamicMusicDay != null) {
-                dynamicMusicDay.setStop(true);
-                dynamicMusicDay = null;
-            }
-            if (dynamicAmbientDay != null) {
-                dynamicAmbientDay.setStop(true);
-                dynamicAmbientDay = null;
-            }
-        } else {
-            if (dynamicMusicNight != null) {
-                dynamicMusicNight.setStop(true);
-                dynamicMusicNight = null;
-            }
-            if (dynamicAmbientNight != null) {
-                dynamicAmbientNight.setStop(true);
-                dynamicAmbientNight = null;
-            }
-        }
     }
 
     public void stopAll() {
