@@ -78,7 +78,7 @@ public class RegionHandler {
             soundHandler.tick(currentRegion);
         } else {
             currentRegion = null;
-            soundHandler.stop();
+            soundHandler.stopAll();
         }
     }
 

@@ -18,7 +18,7 @@ idea {
     }
 }
 
-version = '1.3.0'
+version = '1.3.2'
 group = 'daam'
 archivesBaseName = 'Dynamic-Ambience-And-Music'
 
@@ -58,6 +58,19 @@ dependencies {
 
     compileOnly fileTree(dir: 'optifine', include: '*.jar')
     compileOnly fileTree(dir: 'libs', include: '*.jar')
+
+
+    testImplementation(platform('org.junit:junit-bom:5.10.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 compileJava.options.encoding = 'UTF-8'

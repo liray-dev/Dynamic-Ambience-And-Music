@@ -120,10 +120,10 @@ public class GuiButtonDAAM extends GuiButton {
 
         this.drawCenteredString(mc.fontRenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, -1);
 
-        if (hovered && icon != null) {
+        if (icon != null) {
             mc.getTextureManager().bindTexture(icon);
-            int x = this.x - 20;
-            int y = this.y - 4;
+            int x = this.x;
+            int y = this.y;
             int width = 16;
             int height = 16;
             Tessellator tessellator = Tessellator.getInstance();

@@ -12,14 +12,25 @@ public class Region implements INBTSerializable<NBTTagCompound> {
 
     private AxisAlignedBB AABB;
 
-    private String MUSIC_PATH;
-    private String AMBIENT_PATH;
+    private String MUSIC_PATH_DAY;
+    private String AMBIENT_PATH_DAY;
+
+    private String MUSIC_PATH_NIGHT;
+    private String AMBIENT_PATH_NIGHT;
+
+    private boolean TIME_FACTOR;
 
     public Region() {
         this.setUUID(String.valueOf(java.util.UUID.randomUUID()));
         this.setAABB(new AxisAlignedBB(0, 0, 0, 0, 0, 0));
-        this.setMUSIC_PATH("");
-        this.setAMBIENT_PATH("");
+
+        this.setMUSIC_PATH_DAY("");
+        this.setMUSIC_PATH_NIGHT("");
+
+        this.setAMBIENT_PATH_DAY("");
+        this.setAMBIENT_PATH_NIGHT("");
+
+        this.setTIME_FACTOR(true);
     }
 
     @Override
@@ -38,10 +49,15 @@ public class Region implements INBTSerializable<NBTTagCompound> {
             compound.setDouble("maZ", aabb.maxZ);
         }
         {
-            compound.setString("mPath", getMUSIC_PATH());
+            compound.setString("mPath", getMUSIC_PATH_DAY());
+            compound.setString("mPath2", getMUSIC_PATH_NIGHT());
         }
         {
-            compound.setString("aPath", getAMBIENT_PATH());
+            compound.setString("aPath", getAMBIENT_PATH_DAY());
+            compound.setString("aPath2", getAMBIENT_PATH_NIGHT());
+        }
+        {
+            compound.setBoolean("timeF", isTIME_FACTOR());
         }
         return compound;
     }
@@ -61,10 +77,15 @@ public class Region implements INBTSerializable<NBTTagCompound> {
             setAABB(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
         }
         {
-            setMUSIC_PATH(compound.getString("mPath"));
+            setMUSIC_PATH_DAY(compound.getString("mPath"));
+            setMUSIC_PATH_NIGHT(compound.getString("mPath2"));
         }
         {
-            setAMBIENT_PATH(compound.getString("aPath"));
+            setAMBIENT_PATH_DAY(compound.getString("aPath"));
+            setAMBIENT_PATH_NIGHT(compound.getString("aPath2"));
+        }
+        {
+            setTIME_FACTOR(compound.getBoolean("timeF"));
         }
     }
 
