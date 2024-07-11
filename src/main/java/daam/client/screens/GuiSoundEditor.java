@@ -2,6 +2,7 @@ package daam.client.screens;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import daam.DAAM;
+import daam.client.DrawUtils;
 import daam.common.network.packets.client.UpdateSoundBlockPacket;
 import daam.common.tile.SoundBlockTileEntity;
 import net.minecraft.client.Minecraft;
@@ -44,7 +45,7 @@ public class GuiSoundEditor extends GuiScreen {
                 soundBlockTile.volume = Float.parseFloat(volume.getText());
                 soundBlockTile.delay = Integer.parseInt(delay.getText());
                 DAAM.NETWORK.server(new UpdateSoundBlockPacket(soundBlockTile));
-                Minecraft.getMinecraft().displayGuiScreen(null);
+                DrawUtils.open(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }

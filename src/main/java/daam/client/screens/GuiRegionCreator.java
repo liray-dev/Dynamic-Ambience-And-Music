@@ -1,6 +1,7 @@
 package daam.client.screens;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import daam.client.DrawUtils;
 import daam.client.RegionCreatorHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -36,7 +37,7 @@ public class GuiRegionCreator extends GuiScreen {
         } else {
             RegionCreatorHandler.reset();
         }
-        Minecraft.getMinecraft().displayGuiScreen(null);
+        DrawUtils.open(null);
     }
 
     @Override

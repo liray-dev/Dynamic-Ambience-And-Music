@@ -1,6 +1,7 @@
 package daam.common.blocks;
 
 import daam.DAAM;
+import daam.client.DrawUtils;
 import daam.client.screens.GuiSoundEditor;
 import daam.common.items.SoundStick;
 import daam.common.tile.SoundBlockTileEntity;
@@ -50,13 +51,14 @@ public class SoundBlock extends Block {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             boolean flag = playerIn.getHeldItemMainhand().getItem() instanceof SoundStick;
             if (flag) {
                 TileEntity tileEntity = world.getTileEntity(pos);
                 if (tileEntity instanceof SoundBlockTileEntity) {
-                    Minecraft.getMinecraft().displayGuiScreen(new GuiSoundEditor((SoundBlockTileEntity) tileEntity));
+                    DrawUtils.open(new GuiSoundEditor((SoundBlockTileEntity) tileEntity));
                 }
             }
         }

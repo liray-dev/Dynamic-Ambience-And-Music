@@ -8,6 +8,8 @@ import daam.common.world.Region;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RemoveRegionPacket extends SimpleNBTPacket {
 
@@ -19,6 +21,7 @@ public class RemoveRegionPacket extends SimpleNBTPacket {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void client(Minecraft mc, EntityPlayer player) {
         Region updatedRegion = new Region();
         updatedRegion.deserializeNBT(compound);

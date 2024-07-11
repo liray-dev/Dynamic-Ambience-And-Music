@@ -1,12 +1,21 @@
 package daam.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 public class DrawUtils {
+
+    @SideOnly(Side.CLIENT)
+    public static void open(GuiScreen screen) {
+        Minecraft.getMinecraft().displayGuiScreen(screen);
+    }
 
     public static void grid(AxisAlignedBB axisAlignedBB, float red, float green, float blue, float alpha) {
         drawBoundingBox(axisAlignedBB.minX - 0.01, axisAlignedBB.minY - 0.01, axisAlignedBB.minZ - 0.01, axisAlignedBB.maxX - 0.01, axisAlignedBB.maxY - 0.01, axisAlignedBB.maxZ - 0.01, red, green, blue, alpha);

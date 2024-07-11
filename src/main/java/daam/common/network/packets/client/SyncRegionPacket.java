@@ -6,6 +6,8 @@ import daam.common.world.Region;
 import daam.common.world.RegionChunks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SyncRegionPacket extends SimpleNBTPacket {
 
@@ -17,6 +19,7 @@ public class SyncRegionPacket extends SimpleNBTPacket {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void client(Minecraft mc, EntityPlayer player) {
         Region updatedRegion = new Region();
         updatedRegion.deserializeNBT(compound);

@@ -23,3 +23,7 @@ tile.light_lv12.name=Уровень освещенности 12
 tile.light_lv13.name=Уровень освещенности 13
 tile.light_lv14.name=Уровень освещенности 14
 tile.light_lv15.name=Уровень освещенности 15
+
+key.categories.daam=Динамическая атмосфера и музыка
+key.daam.music_mute=Отключение музыки
+key.daam.ambient_mute=Отключение окружения

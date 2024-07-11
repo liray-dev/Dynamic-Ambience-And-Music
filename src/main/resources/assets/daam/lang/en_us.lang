@@ -23,3 +23,7 @@ tile.light_lv12.name=Light Level 12
 tile.light_lv13.name=Light Level 13
 tile.light_lv14.name=Light Level 14
 tile.light_lv15.name=Light Level 15
+
+key.categories.daam=Dynamic Ambience and Music
+key.daam.music_mute=Music Mute
+key.daam.ambient_mute=Ambient Mute

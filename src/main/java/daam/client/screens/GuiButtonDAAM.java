@@ -46,6 +46,19 @@ public class GuiButtonDAAM extends GuiButton {
         this.callback = callback;
     }
 
+    public GuiButtonDAAM(int x, int y, int width, int height, String text, Consumer<GuiButtonDAAM> callback) {
+        super(-1, x, y, text);
+        this.width = width;
+        this.height = height;
+        this.enabled = true;
+        this.visible = true;
+        this.id = -1;
+        this.x = x;
+        this.y = y;
+        this.displayString = text;
+        this.callback = callback;
+    }
+
     public void setText(String text) {
         this.width = Minecraft.getMinecraft().fontRenderer.getStringWidth(text);
         this.displayString = text;

@@ -8,6 +8,8 @@ import daam.common.world.RegionChunks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +25,7 @@ public class ResponseRegionFromChunkPacket extends SimpleNBTPacket {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void client(Minecraft mc, EntityPlayer player) {
         HashMap<RegionChunks, Region> map = DAAMWorldSavedData.readNBT(compound);
         for (Map.Entry<RegionChunks, Region> entry : map.entrySet()) {

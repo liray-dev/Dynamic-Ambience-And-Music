@@ -3,6 +3,7 @@ package daam.client.screens;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import daam.DAAM;
 import daam.Resources;
+import daam.client.DrawUtils;
 import daam.client.loader.DynamicAmbienceAndMusicLoader;
 import daam.common.network.packets.client.RemoveRegionPacket;
 import daam.common.network.packets.client.UpdateRegionPacket;
@@ -13,12 +14,15 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
+@SideOnly(Side.CLIENT)
 public class GuiRegionEditor extends GuiScreen {
 
     private final Region region;
@@ -45,7 +49,7 @@ public class GuiRegionEditor extends GuiScreen {
             MUSIC_FIELD_DAY.setText(region.getMUSIC_PATH_DAY());
             MUSIC_FIELD_DAY.setMaxStringLength(256);
             this.addButton(new GuiButtonDAAM(centerX + 105, centerY - 85, ChatFormatting.BOLD + "?", (c) -> {
-                Minecraft.getMinecraft().displayGuiScreen(new GuiSelectSound(this, (music) -> {
+                DrawUtils.open(new GuiSelectSound(this, (music) -> {
                     region.setMUSIC_PATH_DAY(DAAM.MODID + ":" + music);
                     MUSIC_FIELD_DAY.setText(region.getMUSIC_PATH_DAY());
                 }));
@@ -56,7 +60,7 @@ public class GuiRegionEditor extends GuiScreen {
             AMBIENT_FIELD_DAY.setText(region.getAMBIENT_PATH_DAY());
             AMBIENT_FIELD_DAY.setMaxStringLength(256);
             this.addButton(new GuiButtonDAAM(centerX + 105, centerY - 50, ChatFormatting.BOLD + "?", (c) -> {
-                Minecraft.getMinecraft().displayGuiScreen(new GuiSelectSound(this, (ambient) -> {
+                DrawUtils.open(new GuiSelectSound(this, (ambient) -> {
                     region.setAMBIENT_PATH_DAY(DAAM.MODID + ":" + ambient);
                     AMBIENT_FIELD_DAY.setText(region.getAMBIENT_PATH_DAY());
                 }));
@@ -70,7 +74,7 @@ public class GuiRegionEditor extends GuiScreen {
             MUSIC_FIELD_NIGHT.setMaxStringLength(256);
             MUSIC_FIELD_NIGHT.setEnabled(timeFactor);
             this.addButton(new GuiButtonDAAM(centerX + 105, centerY - 15, ChatFormatting.BOLD + "?", (c) -> {
-                Minecraft.getMinecraft().displayGuiScreen(new GuiSelectSound(this, (music) -> {
+                DrawUtils.open(new GuiSelectSound(this, (music) -> {
                     region.setMUSIC_PATH_NIGHT(DAAM.MODID + ":" + music);
                     MUSIC_FIELD_NIGHT.setText(region.getMUSIC_PATH_NIGHT());
                 }));
@@ -82,7 +86,7 @@ public class GuiRegionEditor extends GuiScreen {
             AMBIENT_FIELD_NIGHT.setMaxStringLength(256);
             AMBIENT_FIELD_NIGHT.setEnabled(timeFactor);
             this.addButton(new GuiButtonDAAM(centerX + 105, centerY + 20, ChatFormatting.BOLD + "?", (c) -> {
-                Minecraft.getMinecraft().displayGuiScreen(new GuiSelectSound(this, (ambient) -> {
+                DrawUtils.open(new GuiSelectSound(this, (ambient) -> {
                     region.setAMBIENT_PATH_NIGHT(DAAM.MODID + ":" + ambient);
                     AMBIENT_FIELD_NIGHT.setText(region.getAMBIENT_PATH_NIGHT());
                 }));
@@ -93,19 +97,19 @@ public class GuiRegionEditor extends GuiScreen {
 
         this.addButton(new GuiButtonDAAM(centerX - fontRenderer.getStringWidth(ChatFormatting.BOLD + "Save region") / 2, centerY + 45, ChatFormatting.GREEN + "" + ChatFormatting.BOLD + "Save region", (c) -> {
             save();
-            Minecraft.getMinecraft().displayGuiScreen(null);
+            DrawUtils.open(null);
         }).setSound(new SoundEvent(new ResourceLocation("minecraft:block.comparator.click"))).setSoundHovered(new SoundEvent(new ResourceLocation("minecraft:block.iron_trapdoor.close"))));
 
         this.addButton(new GuiButtonDAAM(centerX - fontRenderer.getStringWidth(ChatFormatting.BOLD + "Remove Region") / 2, centerY + 60, ChatFormatting.RED + "" + ChatFormatting.BOLD + "Remove Region", (c) -> {
             remove();
-            Minecraft.getMinecraft().displayGuiScreen(null);
+            DrawUtils.open(null);
         }).setSound(new SoundEvent(new ResourceLocation("minecraft:block.comparator.click"))).setSoundHovered(new SoundEvent(new ResourceLocation("minecraft:block.iron_trapdoor.close"))));
 
         this.addButton(new GuiButtonDAAM(centerX - fontRenderer.getStringWidth(ChatFormatting.BOLD + "Load new sound") / 2, centerY + 75, ChatFormatting.DARK_PURPLE + "" + ChatFormatting.BOLD + "Load new sound", (c) -> open())
                 .setSound(new SoundEvent(new ResourceLocation("minecraft:block.comparator.click")))
                 .setSoundHovered(new SoundEvent(new ResourceLocation("minecraft:block.iron_trapdoor.close"))));
 
-        this.addButton(new GuiButtonDAAM(centerX - 130, centerY - 30, "    ", (c) -> {
+        this.addButton(new GuiButtonDAAM(centerX - 130, centerY - 30, 16, 16, "", (c) -> {
             timeFactor = !timeFactor;
             c.setIcon(timeFactor ? Resources.TIME_FACTOR_ACTIVE : Resources.TIME_FACTOR_DISABLED);
             MUSIC_FIELD_NIGHT.setEnabled(timeFactor);

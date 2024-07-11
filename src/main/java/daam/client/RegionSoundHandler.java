@@ -14,14 +14,11 @@ public class RegionSoundHandler {
     public static boolean ambientMute = false;
     public SoundHandler sound;
     public Region currentRegion;
-
-    private boolean isDay;
-
     public DynamicSound dynamicMusicDay;
     public DynamicSound dynamicAmbientDay;
-
     public DynamicSound dynamicMusicNight;
     public DynamicSound dynamicAmbientNight;
+    private boolean isDay;
 
     public void tick(Region updatedRegion) {
         long time = Minecraft.getMinecraft().world.getWorldTime() % 24000;
@@ -116,6 +113,25 @@ public class RegionSoundHandler {
     }
 
     public void switchRegion(Region updatedRegion) {
+        if (!updatedRegion.equals(currentRegion)) {
+            if (dynamicAmbientDay != null && !updatedRegion.getAMBIENT_PATH_DAY().equals(currentRegion.getAMBIENT_PATH_DAY())) {
+                dynamicAmbientDay.setStop(true);
+                dynamicAmbientDay = null;
+            }
+            if (dynamicAmbientNight != null && !updatedRegion.getAMBIENT_PATH_NIGHT().equals(currentRegion.getAMBIENT_PATH_NIGHT())) {
+                dynamicAmbientNight.setStop(true);
+                dynamicAmbientNight = null;
+            }
+            if (dynamicMusicDay != null && !updatedRegion.getMUSIC_PATH_DAY().equals(currentRegion.getMUSIC_PATH_DAY())) {
+                dynamicMusicDay.setStop(true);
+                dynamicMusicDay = null;
+            }
+            if (dynamicMusicNight != null && !updatedRegion.getMUSIC_PATH_NIGHT().equals(currentRegion.getMUSIC_PATH_NIGHT())) {
+                dynamicMusicNight.setStop(true);
+                dynamicMusicNight = null;
+            }
+        }
+
         if (isDay || !updatedRegion.isTIME_FACTOR()) {
             DynamicSound updatedMusic = new DynamicSound(updatedRegion.getMUSIC_PATH_DAY(), true);
             DynamicSound updatedAmbient = new DynamicSound(updatedRegion.getAMBIENT_PATH_DAY(), false);
